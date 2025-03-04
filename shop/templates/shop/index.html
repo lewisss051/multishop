@@ -2,14 +2,14 @@
 {% block title %}
 {{title}}
 {% endblock title %}
-    <!-- Carousel Start -->
-   
-    <!-- Carousel End -->
-
-
-    <!-- Featured Start -->
+{% block main %}
+{% include "shop/components/carause.html" %}
+{% include "shop/components/feature.html" %}
+{% include "shop/components/category.html" %}
+{% endblock main %}
     
-    <!-- Featured End -->
+
+   
 
 
     <!-- Categories Start -->

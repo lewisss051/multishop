@@ -1,8 +1,22 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
-def index(request):
-    context = {
-        "title":"Multishop",
-    }
-    return render(request, "shop/index.html", context)
+from shop.models import *
+
+
+class Index(ListView):
+    model = SubCategory
+    context_object_name = "subcategories"
+    template_name = "shop/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        subcategories = SubCategory.objects.all()
+        offers = Offer.objects.all()
+        categories = Category.objects.all()
+        data = {}
+        data["subcategories"] = subcategories
+        data["offers"] = offers
+        data["categories"] = categories
+        context["data"] = data
+        return context

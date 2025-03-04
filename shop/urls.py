@@ -1,6 +1,6 @@
-from shop.views import index
+from shop.views import *
 from django.urls import path
 
 urlpatterns = [
-    path("", index, name="index")
+    path("",Index.as_view(), name="index")
 ]

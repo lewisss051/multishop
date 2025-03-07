@@ -13,10 +13,12 @@ class Index(ListView):
         context = super().get_context_data(**kwargs)
         subcategories = SubCategory.objects.all()
         offers = Offer.objects.all()
+        products = Product.objects.all()
         categories = Category.objects.all()
         data = {}
         data["subcategories"] = subcategories
         data["offers"] = offers
         data["categories"] = categories
+        data["products"] = products
         context["data"] = data
         return context

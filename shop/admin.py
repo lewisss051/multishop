@@ -4,6 +4,7 @@ from shop.models import *
 admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.register(CustomUser)
+admin.site.register(Partner)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'image']
 

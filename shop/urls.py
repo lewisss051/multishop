@@ -4,5 +4,5 @@ from django.urls import path
 urlpatterns = [
     path("",Index.as_view(),name="index"),
     path("products/<int:pk>/",ProductDetail.as_view(),name="detail"),
-    path("index",Index.as_view(),name="multishop")
+    path("category/<int:pk>/",ProductByCategory.as_view(),name="category")
 ]

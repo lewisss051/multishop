@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import *
 
 from shop.models import *
@@ -29,6 +29,8 @@ class Index(ListView):
 
 
 class ProductDetail(DetailView):
+
+
     model = Product
     context_object_name = 'product'
     template_name = 'shop/detail.html'
@@ -50,3 +52,19 @@ class ProductDetail(DetailView):
         context['products'] = data
         return context
     
+class ProductByCategory(ListView):
+    model = Product
+    context_object_name = 'products'
+    template_name = 'shop/category.html'
+    paginate_by = 4
+    extra_context = {
+        'title':'Category' 
+    }
+
+    def get_queryset(self):
+        sort_field = self.request.GET.get("sort")
+        category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        products = Product.objects.filter(category=category)
+        if sort_field:
+            products = products.filter(category=category).order_by(sort_field)
+        return products
